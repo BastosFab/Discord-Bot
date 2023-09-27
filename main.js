@@ -13,6 +13,15 @@ process.on("warning", (...args) => {console.log(...args)});
 
 bot.commands = new Collection();
 
+bot.functions = {
+    createId: require('./Functions/createId'),
+}
+
+bot.color = {
+    primary: "#0099ff",
+    warn: "#DCA76E",
+}
+
 bot.on("guildMemberAdd", member => {
     console.log(member.user.tag + " a rejoint le serveur !");
 

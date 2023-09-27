@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'botinfos',
+    name: 'bot',
     description: 'Permet de connaître toutes les informations du bot',
     permission: 'Aucune',
     dm: true,
@@ -23,7 +23,7 @@ module.exports = {
         });
 
         const BotInfosEmbed = new Discord.EmbedBuilder()
-        .setColor('#0099ff')
+        .setColor(bot.color.primary)
         .setTitle(`Information du bot \`${bot.user.tag}\``)
         .setThumbnail(bot.user.displayAvatarURL({dynamic: true}))
         .setDescription(`

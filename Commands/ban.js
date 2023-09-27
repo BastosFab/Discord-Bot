@@ -48,7 +48,7 @@ module.exports = {
                 console.log(error);
             }
 
-            await message.reply(`${message.user} a banni ${user.tag} pour la raison suivante : **${reason}**`);
+            await message.reply({content:`${message.user} a banni ${user.tag} pour la raison suivante : **${reason}**`, ephemeral: true});
 
             await message.guild.bans.create(user.id, {reason: reason})
 

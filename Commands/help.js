@@ -34,7 +34,7 @@ module.exports = {
             });
 
             let HelpEmbed = new Discord.EmbedBuilder()
-            .setColor('#0099ff')
+            .setColor(bot.color.primary)
             .setTitle('Information sur les commandes du bot')
             .setThumbnail(bot.user.displayAvatarURL({dynamic: true}))
             .setDescription(`\u25cf** Pour plus d'information sur une commande : **\`/help [commande]\` \n\u25cf** Commandes disponibles : **\`${bot.commands.size}\``)

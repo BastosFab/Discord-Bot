@@ -83,7 +83,7 @@ module.exports = {
 
 
             const UserEmbed = new Discord.EmbedBuilder()
-            .setColor('#0099ff')
+            .setColor(bot.color.primary)
             .setThumbnail(user.displayAvatarURL({dynamic: true}))
             .setTitle(`🙋‍♂️ Informations sur l'utilisateur ${user.tag}\n`)
             .setDescription(`
@@ -92,8 +92,8 @@ module.exports = {
                 > **#️⃣ | Tag** : \`${user.discriminator}\`
                 > **🆔 | Identifiant** : \`${user.id}\`
                 > **🤖 | Robot** : \`${user.bot ? 'Oui' : 'Non'}\`
-                > **Status** : ${status}
-                > **Badges** : ${(await user.fetchFlags()).toArray().length >- 1 ? badgeIcon.join(' ') : 'Aucun'}
+                > **<a:dltf_status:1156155320733802548> | Status** : ${status}
+                > **<a:dltf_badges:1156140116591525928> | Badges** : ${(await user.fetchFlags()).toArray().length >- 1 ? badgeIcon.join(' ') : 'Aucun'}
                 > **📆 | Date de création** : <t:${Math.floor(user.createdAt / 1000)}:F> \`(il y a ${Math.floor(Math.abs(date - user.createdAt) / 1000 / 60 / 60 / 24)} jours)\`
 
                 ${member ? `**🔵 __Informations sur le membre__**\n
