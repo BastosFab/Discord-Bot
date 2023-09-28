@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
-const loadSlahCommands = require('../Loaders/LoadSlashCommands');
-const loadDatabase = require('../Loaders/LoadDatabase');
+const loadSlahCommands = require('../../Handlers/handlerSlashCommands');
+const loadDatabase = require('../../Handlers/handlerDatabase');
 
 module.exports = async bot =>{
 

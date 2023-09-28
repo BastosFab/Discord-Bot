@@ -8,37 +8,28 @@ module.exports = {
     dm: false,
     category: 'Administration',
     ownerOnly: false,
-    options: [
-        {
-            type: 'role',
-            name: 'role',
-            description: 'Role qui sert de support pour les tickets',
-            required: true,
-            autocomplete: false
-        },
-    ],
+    options: [],
 
     async run(bot, message, args) {
-
-        console.log(args._hoistedOptions[0].value)
 
         let TicketEmbed = new Discord.EmbedBuilder()
         .setColor(bot.color.primary)
         .setThumbnail(bot.user.displayAvatarURL({dynamic: true}))
         .setTitle('Création d\'un ticket')
-        .setDescription(`Pour créer un ticket, cliquez sur la réaction ci-dessous 📩\n Un ${args._hoistedOptions[0].value}`)
+        .setDescription(`Pour créer un ticket, cliquez sur la réaction ci-dessous 📩`)
         .setTimestamp()
         .setFooter({
             iconURL: bot.user.displayAvatarURL({dynamic: true}),
             text: 'DeltaBot \u00a9 2023'
         });
 
-        const btn = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder()
-        .setCustomId('ticket')
-        .setLabel('Créer un ticket')
-        .setEmoji('📩')
-        .setStyle(Discord.ButtonStyle.Primary));
-
+        const btn = new Discord.ActionRowBuilder().addComponents(
+            new Discord.ButtonBuilder().setCustomId('member').setLabel('Report un membre').setEmoji('😤').setStyle(Discord.ButtonStyle.Danger),
+            new Discord.ButtonBuilder().setCustomId('bug').setLabel('Report un bug').setEmoji('⚙️').setStyle(Discord.ButtonStyle.Secondary),
+            new Discord.ButtonBuilder().setCustomId('other').setLabel('Autre').setEmoji('📩').setStyle(Discord.ButtonStyle.Success),
+        );
         await message.reply({embeds: [TicketEmbed], components: [btn]});
+
+        message.reply({content: 'Le message ticket a bien été ajouté !', ephemeral: true});
     }
 }

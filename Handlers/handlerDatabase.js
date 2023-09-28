@@ -5,7 +5,7 @@ module.exports = async () => {
     const db = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: '',
+        password: 'root',
         database: 'deltabot'
     });
 

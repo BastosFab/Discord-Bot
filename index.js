@@ -1,20 +1,21 @@
 const {Discord, EmbedBuilder, Client, Collection} = require('discord.js');
 const bot = new Client({intents: 3276799});
-const loadCommands = require('./Loaders/LoadCommands');
-const loadEvents = require('./Loaders/LoadEvents');
+const loadCommands = require('./Handlers/handlerCommands');
+const loadEvents = require('./Handlers/handlerEvents');
 
 const token = require('./token.json').token;
 const config = require('./config.json');
 
-process.on("exit", code => {console.log(`\x1b[33mLe processus c'est arrêté avec le code : ${code}\x1b[33m`)});
-process.on("uncaughtException", (err, origin) => {console.log(`\x1b[33mUNCAUGHT_EXCEPTION : ${err}`, `ORIGIN : ${origin}\x1b[33m`)});
-process.on("unhandledRejection", (reason, promise) => {console.log(`\x1b[33mUNHANDLED_REJECTION : ${reason}`, `PROMISE : ${promise}\x1b[33m`)});
-process.on("warning", (...args) => {console.log(...args)});
+// process.on("exit", code => {console.log(`\x1b[33mLe processus c'est arrêté avec le code : ${code}\x1b[33m`)});
+// process.on("uncaughtException", (err, origin) => {console.log(`\x1b[33mUNCAUGHT_EXCEPTION : ${err}`, `ORIGIN : ${origin}\x1b[33m`)});
+// process.on("unhandledRejection", (reason, promise) => {console.log(`\x1b[33mUNHANDLED_REJECTION : ${reason}`, `PROMISE : ${promise}\x1b[33m`)});
+// process.on("warning", (...args) => {console.log(...args)});
 
 bot.commands = new Collection();
 
 bot.functions = {
     createId: require('./Functions/createId'),
+    generateCaptcha: require('./Functions/generateCaptcha'),
 }
 
 bot.color = {

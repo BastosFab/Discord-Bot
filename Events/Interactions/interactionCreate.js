@@ -12,11 +12,22 @@ module.exports = async (bot, interaction) => {
             let choices = bot.commands.filter(cmd => cmd.name.includes(entry));
             await interaction.respond(entry === '' ? bot.commands.map(cmd => ({name: cmd.name, value: cmd.name})) : choices.map(choice => ({name: choice.name, value: choice.name})))
         }
+
+        if (interaction.commandName === 'setcaptcha') {
+            let choices = ['on', 'off'];
+            let choice = choices.filter(cmd => cmd.includes(entry));
+            await interaction.respond(entry === '' ? choice.map(cmd => ({name: cmd, value: cmd})) : choice.map(choice => ({name: choice, value: choice})))
+        }
     }
 
     if(interaction.type === Discord.InteractionType.ApplicationCommand) {
 
-        let command = require(`../Commands/${interaction.commandName}`);
+        // let command = require(`../../Commands/${interaction.commandName}`);
+        if(!interaction.isChatInputCommand()) return;
+
+        const command = bot.commands.get(interaction.commandName);
+
+        if(!command) return interaction.reply({content: 'Cette commande n\'existe pas !', ephemeral: true});
 
         if (command.ownerOnly && interaction.user.id !== ownerId) return interaction.reply({content: 'Seul le développeur du bot peut utiliser cette comande !', ephemeral: true});
         command.run(bot, interaction, interaction.options, bot.db);
@@ -24,9 +35,7 @@ module.exports = async (bot, interaction) => {
 
     if(interaction.isButton()) {
 
-        if(interaction.customId === 'ticket') {
-
-            console.log(interaction);
+        if(interaction.customId === 'member') {
 
             let channel = await interaction.guild.channels.create({
                 name: `ticket-${interaction.user.username}`,
